@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Football IQ Test ⚽</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #1f8f4d, #0b3d1f);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 92%;
+  max-width: 520px;
+  background: rgba(0,0,0,0.45);
+  padding: 28px;
+  border-radius: 22px;
+  text-align: center;
+  transition: all 1s ease;
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  margin-bottom: 12px;
+}
+
+.progress {
+  height: 6px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.bar {
+  height: 100%;
+  width: 0%;
+  background: #4dff9a;
+  transition: width 0.5s;
+}
+
+.question {
+  font-size: 1.2rem;
+  margin-bottom: 22px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 30px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.football-btn {
+  background: #f5f5f5;
+  color: #0b3d1f;
+}
+
+.football-btn:hover {
+  transform: scale(1.05);
+}
+
+/* 💗 VALENTINE MODE */
+.valentine {
+  background:
+    linear-gradient(rgba(255,154,158,0.85), rgba(250,208,196,0.85)),
+    url('us.png.PNG') center/cover no-repeat;
+  color: #5a0c2d;
+}
+
+.valentine h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.4rem;
+}
+
+.love-btn {
+  background: #ff4d6d;
+  color: white;
+}
+
+.heart {
+  font-size: 2rem;
+  animation: float 2s infinite ease-in-out;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* 💘 Floating heart photo cut-outs */
+.heart-photo {
+  position: fixed;
+  width: 70px;
+  height: 70px;
+  background: url('us.jpg') center/cover no-repeat;
+  clip-path: path("M35 60 C35 60 0 35 0 20 C0 8 8 0 20 0 C28 0 35 8 35 14 C35 8 42 0 50 0 C62 0 70 8 70 20 C70 35 35 60 35 60 Z");
+  animation: float 3s infinite ease-in-out;
+  z-index: 1;
+  opacity: 0.95;
+}
+
+/* 💗 Falling confetti hearts */
+.confetti {
+  position: fixed;
+  top: -10px;
+  font-size: 18px;
+  animation: fall 4s linear infinite;
+  z-index: 0;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(120vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="card">
+  <h1 id="title">Football IQ Check ⚽</h1>
+
+  <div class="progress">
+    <div class="bar" id="bar"></div>
+  </div>
+
+  <div class="question" id="question">
+    Which club has won the most Champions League titles?
+  </div>
+
+  <div id="buttons">
+    <button class="football-btn" onclick="nextQ()">AC Milan</button>
+    <button class="football-btn" onclick="nextQ()">Real Madrid</button>
+    <button class="football-btn" onclick="nextQ()">Barcelona</button>
+  </div>
+</div>
+
+<script>
+let step = 0;
+const bar = document.getElementById("bar");
+const card = document.getElementById("card");
+const question = document.getElementById("question");
+const buttons = document.getElementById("buttons");
+const title = document.getElementById("title");
+
+function nextQ() {
+  step++;
+  bar.style.width = (step * 12) + "%";
+
+  if (step === 1) {
+    question.innerText = "Which position controls tempo and transitions?";
+    buttons.innerHTML = `
+      <button class="football-btn" onclick="nextQ()">Striker</button>
+      <button class="football-btn" onclick="nextQ()">Central Midfielder</button>
+      <button class="football-btn" onclick="nextQ()">Centre-back</button>`;
+  }
+
+  else if (step === 2) {
+    question.innerText = "At the highest level, what really wins matches?";
+    buttons.innerHTML = `
+      <button class="football-btn" onclick="nextQ()">Raw talent</button>
+      <button class="football-btn" onclick="nextQ()">Tactical discipline</button>
+      <button class="football-btn" onclick="nextQ()">Mental strength</button>`;
+  }
+
+  else if (step === 3) {
+    question.innerText = "Final one. Choose instinctively.";
+    buttons.innerHTML = `
+      <button class="football-btn" onclick="nextQ()">Stats</button>
+      <button class="football-btn" onclick="nextQ()">Chemistry</button>
+      <button class="football-btn" onclick="nextQ()">Heart ❤️</button>`;
+  }
+
+  else if (step === 4) {
+    card.classList.add("valentine");
+    title.innerText = "Switching tactics 💗";
+    question.innerText = "Okay… this wasn’t really a football quiz.";
+
+    buttons.innerHTML = `
+      <button class="love-btn" onclick="nextQ()">I had a feeling 😏</button>`;
+  }
+
+  else if (step === 5) {
+    question.innerText =
+      "You’re my favourite teammate. My safe space. My biggest win.";
+    buttons.innerHTML = `
+      <button class="love-btn" onclick="nextQ()">You’re way too cute 🥺</button>`;
+  }
+
+  else if (step === 6) {
+    question.innerHTML =
+      `Will you be my Valentine? <div class="heart">💖💖💖</div>`;
+    buttons.innerHTML = `
+      <button class="love-btn" onclick="nextQ()">Yes ❤️</button>
+      <button class="love-btn" onclick="nextQ()">Obviously yes 💞</button>`;
+  }
+
+  else {
+    question.innerText =
+      "No trophies. No scorelines. Just us — and I’d still choose you every time.";
+    buttons.innerHTML = `<div class="heart">💘</div>`;
+    hearts();
+    confetti();
+  }
+}
+
+function hearts() {
+  for (let i = 0; i < 6; i++) {
+    const h = document.createElement("div");
+    h.className = "heart-photo";
+    h.style.left = Math.random() * 80 + "vw";
+    h.style.top = Math.random() * 70 + "vh";
+    document.body.appendChild(h);
+  }
+}
+
+function confetti() {
+  for (let i = 0; i < 30; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.innerText = "💗";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.animationDuration = (Math.random() * 2 + 3) + "s";
+    document.body.appendChild(c);
+
+    setTimeout(() => c.remove(), 4000);
+  }
+}
+</script>
+
+</body>
+</html>
